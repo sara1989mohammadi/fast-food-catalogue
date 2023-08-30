@@ -1,20 +1,23 @@
 import { useEffect, useState } from "react";
 import axios from "../axios";
+import Loading from "../Loading/loading";
 
 const CategoryList = () => {
+  const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     const fetchCategories = async () => {
       const res = await axios.get("/FoodCategory/categories");
       setCategories(res.data);
+      setLoading(false);
     };
     fetchCategories();
   }, []);
-  return (
-    <nav className="container mt-n5">
-      <div
-        className="bg-white rounded-3 shadow-lg py-4"
-        style={{ height: "80px" }}>
+  const renderContent = () => {
+    if (loading) {
+      return <Loading theme="primary" />;
+    } else {
+      return (
         <ul className="nav">
           <li className="nav-item">
             <a href="#" className="nav-link">
@@ -29,6 +32,15 @@ const CategoryList = () => {
             </li>
           ))}
         </ul>
+      );
+    }
+  };
+  return (
+    <nav className="container mt-n5">
+      <div
+        className="bg-white rounded-3 shadow-lg py-4"
+        style={{ height: "80px" }}>
+        {renderContent()}
       </div>
     </nav>
   );
