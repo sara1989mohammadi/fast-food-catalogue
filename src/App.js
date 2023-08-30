@@ -1,7 +1,13 @@
 import "./App.css";
-
+import CategoryList from "./CategoryList/categoryList";
+import Header from "./Header/header";
 function App() {
-  return <h1>fast food</h1>;
+  return (
+    <div className="wrapper bg-faded-dark">
+      <Header />
+      <CategoryList />
+    </div>
+  );
 }
 
 export default App;
