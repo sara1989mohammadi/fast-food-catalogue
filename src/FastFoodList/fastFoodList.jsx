@@ -1,7 +1,6 @@
 import FastFoodItem from "../FastFoodItem/fastFoodItem";
 
 const FastFoodList = ({ fastFoodItems }) => {
-  console.log({ fastFoodItems });
   return (
     <div className="row">
       {fastFoodItems.map((fastfood) => {
