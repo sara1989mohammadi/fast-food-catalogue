@@ -10,9 +10,7 @@ function App() {
   const [fastFoodItem, setfastFoodItem] = useState([]);
   const fetchData = async (categoryId = null) => {
     setLoading(true);
-    const res = await axios.get(
-      `/FastFood/list/${categoryId ? "?categoryId=" + categoryId : ""}`
-    );
+    const res = await axios.get(`/FastFood/list.json${"?categoryId=" + 2}`);
     setLoading(false);
     console.log(res.data);
     setfastFoodItem(res.data);

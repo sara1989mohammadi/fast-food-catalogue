@@ -7,7 +7,8 @@ const CategoryList = () => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     const fetchCategories = async () => {
-      const res = await axios.get("/FoodCategory/categories");
+      const res = await axios.get("/FoodCategory/categories.json");
+      console.log("res", res);
       setCategories(res.data);
       setLoading(false);
     };
