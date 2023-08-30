@@ -14,7 +14,9 @@ function App() {
       `/FastFood/list/${categoryId ? "?categoryId=" + categoryId : ""}`
     );
     setLoading(false);
+    console.log(res.data);
     setfastFoodItem(res.data);
+    console.log(fastFoodItem);
   };
 
   useEffect(() => {
@@ -24,7 +26,7 @@ function App() {
     if (loading) {
       return <Loading theme="dark" />;
     } else {
-      return <FastFoodList fastFoodItem={fastFoodItem} />;
+      return <FastFoodList fastFoodItems={fastFoodItem} />;
     }
   };
   return (
