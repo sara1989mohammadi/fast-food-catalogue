@@ -10,6 +10,9 @@ function App() {
   const [fastFoodItem, setfastFoodItem] = useState([]);
   const fetchData = async (categoryId = null) => {
     setLoading(true);
+    // const res = await axios.get(
+    //   `/FastFood/list/${categoryId ? "?categoryId=" + categoryId : ""}`
+    // );
     const res = await axios.get(`/FastFood/list.json${"?categoryId=" + 2}`);
     setLoading(false);
     console.log(res.data);
@@ -20,6 +23,9 @@ function App() {
   useEffect(() => {
     fetchData();
   }, []);
+  const filterItems = (categoryId) => {
+    fetchData(categoryId);
+  };
   const renderContent = () => {
     if (loading) {
       return <Loading theme="dark" />;
@@ -30,7 +36,7 @@ function App() {
   return (
     <div className="wrapper bg-faded-dark">
       <Header />
-      <CategoryList />
+      <CategoryList filterItems={filterItems} />
       <div className="container mt-4">{renderContent()}</div>
     </div>
   );
