@@ -1,5 +1,4 @@
 import FastFoodItem from "../FastFoodItem/fastFoodItem";
-
 const FastFoodList = ({ fastFoodItems }) => {
   let delay = 0.1;
   return (
@@ -15,4 +14,5 @@ const FastFoodList = ({ fastFoodItems }) => {
     </div>
   );
 };
+
 export default FastFoodList;

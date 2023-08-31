@@ -6,7 +6,7 @@ const FastFoodItem = ({ name, price, ingredients, imageUrl, delay }) => {
       className="card product-card h-100 border-0 shadow-sm pb-1 fade-in-horiz"
       style={{ animationDelay: delay + "s" }}>
       <span className="badge badge-end badge-shadow bg-success fs-md fw-medium">
-        price: {price.toLocaleString()} $
+        قیمت: {price.toLocaleString()} تومان
       </span>
       <div className="card__placeholder">
         <img className="card-img-top" src={imageUrl} />
@@ -17,7 +17,7 @@ const FastFoodItem = ({ name, price, ingredients, imageUrl, delay }) => {
         <div className="fs-ms fw-bold text-muted mb-3">{ingredients}</div>
         <button className="btn btn-outline-success btn-sm w-100 mt-auto fw-bold">
           <HiShoppingCart className="fs-5 ms-3" />
-          Add to....
+          افزودن به سبد خرید
         </button>
       </div>
     </div>

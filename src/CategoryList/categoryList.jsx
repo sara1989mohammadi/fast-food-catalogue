@@ -1,55 +1,51 @@
 import { useEffect, useState } from "react";
-import axios from "../axios";
 import Loading from "../Loading/loading";
 import SearchBar from "../SearchBar/searchBar";
+import useAxios from "../useAxios";
 
 const CategoryList = ({ filterItems, children }) => {
-  const [loading, setLoading] = useState(true);
-  const [categories, setCategories] = useState([]);
-  useEffect(() => {
-    const fetchCategories = async () => {
-      const res = await axios.get("/FoodCategory/categories");
-      setCategories(res.data);
-      setLoading(false);
-    };
-    fetchCategories();
-  }, []);
+  const [categories, , loading] = useAxios({
+    url: "/FoodCategory/categories",
+  });
+
   const renderContent = () => {
     if (loading) {
       return <Loading theme="primary" />;
-    } else {
-      return (
-        <div className="d-flex align-items-center  bg-white rounded-3 shadow-lg py-4">
-          <ul className="nav">
-            <li className="nav-item" onClick={() => filterItems()}>
+    }
+
+    return (
+      <div className="d-flex align-items-center  bg-white rounded-3 shadow-lg py-4">
+        <ul className="nav">
+          <li className="nav-item" onClick={() => filterItems()}>
+            <a className="nav-link" href="#">
+              همه فست فودها
+            </a>
+          </li>
+          {categories.map((category) => (
+            <li
+              className="nav-item"
+              key={category.id}
+              onClick={() => filterItems(category.id)}>
               <a className="nav-link" href="#">
-                All List
+                {category.name}
               </a>
             </li>
-            {categories.map((category) => (
-              <li
-                className="nav-item"
-                key={category.id}
-                onClick={() => filterItems(category.id)}>
-                <a className="nav-link" href="#">
-                  {category.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-          {children}
-        </div>
-      );
-    }
+          ))}
+        </ul>
+        {children}
+      </div>
+    );
   };
+
   return (
     <nav className="container mt-n5">
       <div
-        className="bg-white rounded-3 shadow-lg py-4"
+        className="d-flex align-items-center bg-white rounded-3 shadow-lg py-4"
         style={{ height: "80px" }}>
         {renderContent()}
       </div>
     </nav>
   );
 };
+
 export default CategoryList;
