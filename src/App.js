@@ -43,7 +43,7 @@ function App() {
       return (
         <>
           <div className="alert alert-warning text-center">یافت نشد</div>
-          <img className="max-auto mt-5 d-block" src={notFound} />
+          <img className="max-auto mt-5 d-block fade-in-horiz" src={notFound} />
         </>
       );
     }
